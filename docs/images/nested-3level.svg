@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="220" viewBox="0 0 760 220">
+  <style>
+    .btn { fill:#f3f4f6; stroke:#9ca3af; stroke-width:1; }
+    .text { font-family: Arial, Helvetica, sans-serif; font-size:13px; fill:#111827 }
+    .list { fill:#ffffff; stroke:#d1d5db; stroke-width:1 }
+    .item { fill:none; stroke:#e5e7eb }
+    .chev { fill:#6b7280 }
+  </style>
+  <!-- Trigger -->
+  <rect x="16" y="12" width="140" height="32" rx="6" class="btn" />
+  <text x="28" y="32" class="text">Menu</text>
+  <text x="156" y="32" class="chev">▾</text>
+
+  <!-- List box -->
+  <g transform="translate(16,56)">
+    <rect width="320" height="136" rx="6" class="list" />
+
+    <g transform="translate(8,8)">
+      <rect width="304" height="28" class="item" />
+      <text x="8" y="18" class="text">A</text>
+    </g>
+
+    <g transform="translate(8,40)">
+      <rect width="304" height="28" class="item" />
+      <text x="8" y="18" class="text">B</text>
+      <text x="260" y="18" class="chev">▸</text>
+
+      <!-- Sublist level 2 -->
+      <g transform="translate(320,-40)">
+        <rect width="240" height="120" rx="6" class="list" />
+        <g transform="translate(8,8)">
+          <rect width="224" height="28" class="item" />
+          <text x="8" y="18" class="text">B-1</text>
+        </g>
+        <g transform="translate(8,40)">
+          <rect width="224" height="28" class="item" />
+          <text x="8" y="18" class="text">B-2</text>
+          <text x="186" y="18" class="chev">▸</text>
+
+          <!-- Sublist level 3 -->
+          <g transform="translate(240,-40)">
+            <rect width="180" height="80" rx="6" class="list" />
+            <g transform="translate(8,8)">
+              <text x="0" y="14" class="text">B-2-a</text>
+            </g>
+            <g transform="translate(8,32)">
+              <text x="0" y="14" class="text">B-2-b</text>
+            </g>
+          </g>
+
+        </g>
+        <g transform="translate(8,72)">
+          <rect width="224" height="28" class="item" />
+          <text x="8" y="18" class="text">B-3</text>
+        </g>
+      </g>
+
+    </g>
+
+    <g transform="translate(8,104)">
+      <rect width="304" height="28" class="item" />
+      <text x="8" y="18" class="text">C</text>
+    </g>
+
+  </g>
+</svg>

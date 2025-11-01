@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="160" viewBox="0 0 600 160">
+  <style>
+    .btn { fill:#f3f4f6; stroke:#9ca3af; stroke-width:1; }
+    .text { font-family: Arial, Helvetica, sans-serif; font-size:13px; fill:#111827 }
+    .list { fill:#ffffff; stroke:#d1d5db; stroke-width:1 }
+    .item { fill:none; stroke:#e5e7eb }
+    .chev { fill:#6b7280 }
+  </style>
+  <!-- Trigger -->
+  <rect x="16" y="12" width="120" height="32" rx="6" class="btn" />
+  <text x="28" y="32" class="text">Menu</text>
+  <text x="124" y="32" class="chev">▾</text>
+
+  <!-- List box -->
+  <g transform="translate(16,56)">
+    <rect width="220" height="88" rx="6" class="list" />
+
+    <g transform="translate(8,8)">
+      <rect width="204" height="28" class="item" />
+      <text x="8" y="18" class="text">One</text>
+    </g>
+
+    <g transform="translate(8,40)">
+      <rect width="204" height="28" class="item" />
+      <text x="8" y="18" class="text">Two</text>
+      <text x="180" y="18" class="chev">▸</text>
+
+      <!-- Sublist on the right -->
+      <g transform="translate(220,-40)">
+        <rect width="180" height="64" rx="6" class="list" />
+        <g transform="translate(8,8)">
+          <text x="0" y="14" class="text">Two-One</text>
+        </g>
+        <g transform="translate(8,32)">
+          <text x="0" y="14" class="text">Two-Two</text>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(8,72)">
+      <rect width="204" height="28" class="item" />
+      <text x="8" y="18" class="text">Three</text>
+    </g>
+
+  </g>
+</svg>
