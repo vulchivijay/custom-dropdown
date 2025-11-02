@@ -31,7 +31,7 @@
     "postbuild": "npm run sync:dist",
     "demo:serve": "node scripts/serve-demo.js",
     "demo:open": "start http://localhost:5000",
-    "release:prep": "npm run build && git add dist demo/dist && git commit -m \"chore(dist): build for release\" || true",
+    "release:prep": "npm run build && git commit -m \"chore(dist): build for release\" || true",
     "prepare": "npm run build",
     "clean": "rimraf dist"
   },
@@ -54,7 +54,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.0",
-  "rollup": "^3.29.5",
+    "rollup": "^3.29.5",
+    "rollup-plugin-postcss": "^4.0.0",
+    "sass": "^1.70.0",
     "ts-jest": "^29.0.0",
     "tslib": "^2.5.0",
     "typescript": "^5.0.0"

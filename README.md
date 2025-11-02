@@ -1,23 +1,3 @@
-Publishing
-----------
-
-This repo includes a GitHub Actions workflow `.github/workflows/release.yml` that publishes to npm when a GitHub Release is published. To use it:
-Local publish
--------------
-
-To publish locally:
-Try the demo
-------------
-
-1. Build the package: `npm run build`
-Usage: nested options
----------------------
-
-You can pass nested options and per-item onClick callbacks:
-```js
-import { createDropdown } from 'simple-custom-dropdown';
-
-const root = document.getElementById('app');
 # simple-custom-dropdown
 
 Install and usage
@@ -30,22 +10,11 @@ npm install simple-custom-dropdown
 import { createDropdown } from 'simple-custom-dropdown';
 
 const root = document.getElementById('app');
-Ways to check the UI
---------------------
-
-1) Manual demo (fast)
-2) Local dev server with HMR (recommended for iterative development)
-
-3) Automated E2E tests
-4) Component catalog / visual tests (Storybook)
-
-5) Accessibility checks
-Which option should I add next? I can scaffold E2E tests or Storybook stories and CI if you want automated UI checks.
 
 Quick copy-paste snippet for other projects
 ------------------------------------------
 
-Use this short block in another project's docs or README to show how to install and use `simple-custom-dropdown`.
+README to show how to install and use `simple-custom-dropdown`.
 Install
 
 ```powershell
@@ -96,24 +65,6 @@ createDropdown(root, [
 	] }
 ]);
 ```
-Publishing
-----------
-
-This repo includes a GitHub Actions workflow `.github/workflows/release.yml` that publishes to npm when a GitHub Release is published. To use it:
-
-1. Create an npm automation token and add it to the repository secrets as `NODE_AUTH_TOKEN`.
-2. Create a release in GitHub (Draft -> Publish) or tag and push `v*` release.
-3. The workflow will run, build the package, and run `npm publish --access public` using the token.
-
-Local publish
--------------
-
-To publish locally:
-
-```powershell
-npm login
-npm publish --access public
-```
 
 Try the demo
 ------------
@@ -128,7 +79,6 @@ npx http-server demo -p 5000
 ```
 
 3. Open `http://localhost:5000` in your browser and interact with the dropdown.
-
 
 Usage: nested options
 ---------------------
@@ -192,22 +142,6 @@ npm install
 npm run dev
 ```
 
-3) Automated E2E tests
-
-- Use E2E tests to script user flows and assertions (click, keyboard, snapshot). Example flow:
-	- Run `npm run build` and serve demo.
-	- Use an E2E test runner to open the page, click the dropdown, select items, assert emitted values.
-
-4) Component catalog / visual tests (Storybook)
-
-- Use Storybook to create stories for variants (single-level, nested, keyboard). Add Chromatic or an E2E/visual tool for visual regression.
-
-5) Accessibility checks
-
-- Use axe (axe-core or browser extension) to run automated accessibility checks on the demo pages.
-
-Which option should I add next? I can scaffold E2E tests or Storybook stories and CI if you want automated UI checks.
-
 Quick copy-paste snippet for other projects
 ------------------------------------------
 
@@ -264,5 +198,3 @@ createDropdown(root, [
 	] }
 ]);
 ```
-
-

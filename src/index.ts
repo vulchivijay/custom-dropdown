@@ -9,6 +9,8 @@ export type OptionItem = {
   children?: OptionItem[];
 };
 
+import './styles/dropdown.scss';
+
 export function createDropdown(root: HTMLElement, options: OptionItem[], placeholder = 'Select') {
   const container = document.createElement('div');
   container.className = 'simple-custom-dropdown';
@@ -16,14 +18,14 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
 
   const button = document.createElement('button');
   button.type = 'button';
-  button.className = 'cd-button';
+  button.className = 'scd-button';
   button.setAttribute('aria-haspopup', 'listbox');
   button.setAttribute('aria-expanded', 'false');
   button.textContent = placeholder;
   container.appendChild(button);
 
   const list = document.createElement('ul');
-  list.className = 'cd-list';
+  list.className = 'scd-list';
   list.setAttribute('role', 'listbox');
   list.setAttribute('tabindex', '-1');
   list.style.display = 'none';
@@ -39,15 +41,44 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
 
       if (opt.children && opt.children.length) {
         const sublist = document.createElement('ul');
-        sublist.className = 'cd-sublist';
+        sublist.className = 'scd-sublist';
         sublist.setAttribute('role', 'listbox');
         sublist.style.display = 'none';
         renderOptions(sublist, opt.children);
         li.appendChild(sublist);
 
+  // helper: decide alignment based on viewport space
+        function applySublistAlignment(parentLi: HTMLElement, subEl: HTMLElement) {
+          // clear previous alignment classes
+          subEl.classList.remove('scd-sublist--align-left', 'scd-sublist--align-right');
+          // measure bounding boxes
+          const parentRect = parentLi.getBoundingClientRect();
+          const subRect = subEl.getBoundingClientRect();
+          const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+          // default position: align to the right of parent (normal flow). If not enough space on right, align left.
+          const spaceOnRight = viewportWidth - parentRect.right;
+          const spaceOnLeft = parentRect.left;
+
+          if (spaceOnRight < subRect.width && spaceOnLeft >= subRect.width) {
+            subEl.classList.add('scd-sublist--align-left');
+          } else {
+            subEl.classList.add('scd-sublist--align-right');
+          }
+        }
+
+  // expose helper on the element so other code paths (keyboard) can reuse it
+  (sublist as any).__applyAlignment = applySublistAlignment;
+
         // open sublist on hover for mouse users
-        li.addEventListener('mouseenter', () => (sublist.style.display = 'block'));
-        li.addEventListener('mouseleave', () => (sublist.style.display = 'none'));
+        li.addEventListener('mouseenter', () => {
+          sublist.style.display = 'block';
+          applySublistAlignment(li, sublist);
+        });
+        li.addEventListener('mouseleave', () => {
+          sublist.style.display = 'none';
+          sublist.classList.remove('scd-sublist--align-left', 'scd-sublist--align-right');
+        });
       }
 
       listEl.appendChild(li);
@@ -164,6 +195,24 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
       const sub = cur.querySelector(':scope > ul') as HTMLElement | null;
       if (sub) {
         sub.style.display = 'block';
+        try {
+          const fn = (sub as any).__applyAlignment;
+          if (typeof fn === 'function') fn(cur, sub);
+          else {
+            // fallback inline computation
+            const parentRect = cur.getBoundingClientRect();
+            const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            const spaceOnRight = viewportWidth - parentRect.right;
+            const spaceOnLeft = parentRect.left;
+            if (spaceOnRight < sub.getBoundingClientRect().width && spaceOnLeft >= sub.getBoundingClientRect().width) {
+              sub.classList.add('scd-sublist--align-left');
+            } else {
+              sub.classList.add('scd-sublist--align-right');
+            }
+          }
+        } catch (err) {
+          // ignore alignment errors
+        }
         cur.setAttribute('aria-expanded', 'true');
         pushFrame(sub, cur, 0);
       }
@@ -186,6 +235,19 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
     const sub = el.querySelector(':scope > ul') as HTMLElement | null;
     if (sub) {
       sub.style.display = 'block';
+      try {
+        (function() {
+          const parentRect = el.getBoundingClientRect();
+          const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+          const spaceOnRight = viewportWidth - parentRect.right;
+          const spaceOnLeft = parentRect.left;
+          if (spaceOnRight < sub.getBoundingClientRect().width && spaceOnLeft >= sub.getBoundingClientRect().width) {
+            sub.classList.add('scd-sublist--align-left');
+          } else {
+            sub.classList.add('scd-sublist--align-right');
+          }
+        })();
+      } catch (err) {}
       el.setAttribute('aria-expanded', 'true');
       pushFrame(sub, el, 0);
       return;

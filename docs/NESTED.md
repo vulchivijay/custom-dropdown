@@ -135,7 +135,7 @@ Deeply nested menus bring additional accessibility considerations. Below are rec
 7. Testing
    - Use axe-core (browser or automated) to catch common issues.
    - Run manual tests with NVDA/VoiceOver/JAWS.
-  - Include keyboard-only tests in E2E suites (Cypress/Playwright or similar).
+   - Include keyboard-only tests in E2E suites (Cypress/Playwright or similar).
 
 ---
 

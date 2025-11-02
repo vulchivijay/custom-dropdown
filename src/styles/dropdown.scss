@@ -1,0 +1,51 @@
+/* Basic styles for simple-custom-dropdown */
+.simple-custom-dropdown {
+  font-family: Arial, sans-serif;
+  display: inline-block;
+  position: relative;
+
+  .scd-button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .scd-list {
+    position: absolute;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    z-index: 1000;
+    min-width: 160px;
+
+    > li {
+      padding: 6px 12px;
+      white-space: nowrap;
+    }
+  }
+
+  .scd-sublist {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 6px;
+    display: block; /* JS toggles visibility */
+
+    &--align-left {
+      left: auto;
+      right: 100%;
+      margin-left: 0;
+      margin-right: 6px;
+    }
+
+    &--align-right {
+      left: 100%;
+      right: auto;
+      margin-left: 6px;
+    }
+  }
+}
