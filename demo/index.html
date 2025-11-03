@@ -22,14 +22,24 @@
 
       const root = document.getElementById('root');
       const options = [
-        { label: 'Option 1', value: '1' },
-        { label: 'Option 2', value: '2' },
-        { label: 'More...', value: 'more', children: [
-          { label: 'Sub 1', value: 's1' },
-          { label: 'Sub 2', value: 's2' }
+        { value: 'electronics', label: 'Electronics' },
+        { value: 'fashion', label: 'Fashion', children: [
+          { value: 'mens-clothing', label: "Men's Clothing" },
+          { value: 'womens-clothing', label: "Women's Clothing", children: [
+            { value: 'dresses', label: 'Dresses' },
+            { value: 'tops', label: 'Tops' }
+          ] }
+        ] },
+        { value: 'home-garden', label: 'Home & Garden', children: [
+          { value: 'furniture', label: 'Furniture' },
+          { value: 'kitchen', label: 'Kitchen', children: [
+            { value: 'cookware', label: 'Cookware' },
+            { value: 'appliances', label: 'Appliances', children: [
+              { value: 'microwave', label: 'Microwave Ovens' }
+            ] }
+          ] }
         ] }
-      ];
-
+      ]
       // createDropdown returns the DOM element for the dropdown
       const dropdownEl = createDropdown(root, options, 'Choose');
       // if the bundle expects to append into a root container, do that
