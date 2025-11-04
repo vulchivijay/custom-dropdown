@@ -198,3 +198,8 @@ createDropdown(root, [
 	] }
 ]);
 ```
+
+<img width="978" height="487" alt="Screenshot 2025-11-03 190511" src="https://github.com/user-attachments/assets/396cc350-9a4b-4587-88d0-ef19eaf62f84" />
+
+<img width="830" height="444" alt="Screenshot 2025-11-03 190545" src="https://github.com/user-attachments/assets/2fec8f3b-b730-447c-83a9-b47069cae9f7" />
+
