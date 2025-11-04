@@ -16,6 +16,14 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
   container.className = 'simple-custom-dropdown';
   container.tabIndex = -1;
 
+  function isMobileScreen(): boolean {
+    return window.innerWidth <= 768; // You can adjust this threshold as needed
+  }
+
+  if (isMobileScreen()) {
+    container.className = container.className + ' is--mobile';
+  }
+
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'scd-button';
@@ -47,7 +55,7 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
         renderOptions(sublist, opt.children);
         li.appendChild(sublist);
 
-  // helper: decide alignment based on viewport space
+        // helper: decide alignment based on viewport space
         function applySublistAlignment(parentLi: HTMLElement, subEl: HTMLElement) {
           // clear previous alignment classes
           subEl.classList.remove('scd-sublist--align-left', 'scd-sublist--align-right');
@@ -67,8 +75,8 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
           }
         }
 
-  // expose helper on the element so other code paths (keyboard) can reuse it
-  (sublist as any).__applyAlignment = applySublistAlignment;
+        // expose helper on the element so other code paths (keyboard) can reuse it
+        (sublist as any).__applyAlignment = applySublistAlignment;
 
         // open sublist on hover for mouse users
         li.addEventListener('mouseenter', () => {
@@ -236,7 +244,7 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
     if (sub) {
       sub.style.display = 'block';
       try {
-        (function() {
+        (function () {
           const parentRect = el.getBoundingClientRect();
           const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
           const spaceOnRight = viewportWidth - parentRect.right;
@@ -247,7 +255,7 @@ export function createDropdown(root: HTMLElement, options: OptionItem[], placeho
             sub.classList.add('scd-sublist--align-right');
           }
         })();
-      } catch (err) {}
+      } catch (err) { }
       el.setAttribute('aria-expanded', 'true');
       pushFrame(sub, el, 0);
       return;

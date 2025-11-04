@@ -77,4 +77,13 @@
       right: auto;
     }
   }
+
+  &.is--mobile {
+    .scd-sublist {
+      position: relative;
+      left: 0;
+      box-shadow: none;
+      border: none;
+    }
+  } 
 }
